@@ -25,15 +25,15 @@ Llevas 3 intentos y has encontrado 2 niños.
 ```
 
 Niños: **4**
- - Escondidos: **3**
+- Escondidos: **3**
 
 Escondites: 
- - **árbol**
- - **banco**
- - **arbusto**
- - **columpio**
- - **caseta**
- - **tobogán**
+- **árbol**
+- **banco**
+- **arbusto**
+- **columpio**
+- **caseta**
+- **tobogán**
 
 Intentos: **12**
 
