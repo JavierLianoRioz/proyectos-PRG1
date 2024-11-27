@@ -8,19 +8,17 @@ class Escondite {
 
     final int INTENTOS_MAXIMOS = 12;
 
-    final double PROBABILIDAD_OCULTARSE = 0.1;
-
     int intentoActual = 1;
     boolean niñosEncontrados;
-    esconditeNiño1 = (int) ((Math.random() * 6 - 1 + 1) + 1);
-    esconditeNiño2 = (int) ((Math.random() * 6 - 1 + 1) + 1);
-    esconditeNiño3 = (int) ((Math.random() * 6 - 1 + 1) + 1);
+    esconditeNiño1 = esconderse();
+    esconditeNiño2 = esconderse();
+    esconditeNiño3 = esconderse();
     do {
       int guess = new Scanner(System.in).nextInt();
       intentoActual++;
-      esconditeNiño1 = guess == esconditeNiño1 && Math.random() >= PROBABILIDAD_OCULTARSE ? 0 : esconditeNiño1;
-      esconditeNiño2 = guess == esconditeNiño2 && Math.random() >= PROBABILIDAD_OCULTARSE ? 0 : esconditeNiño2;
-      esconditeNiño3 = guess == esconditeNiño3 && Math.random() >= PROBABILIDAD_OCULTARSE ? 0 : esconditeNiño3;
+      esconditeNiño1 = buscarNiño(esconditeNiño1, guess);
+      esconditeNiño2 = buscarNiño(esconditeNiño2, guess);
+      esconditeNiño3 = buscarNiño(esconditeNiño3, guess);
       niñosEncontrados = esconditeNiño1 + esconditeNiño2 + esconditeNiño3 == 0;
       if (esconditeNiño1 == 0)
         System.out.println("Niño 1 encontrado");
@@ -32,8 +30,18 @@ class Escondite {
     if (niñosEncontrados)
       System.out.println("Has encontrado a todos los niños");
     else
+
       System.out.println("Demasiados intentos");
   }
 
-}
+  static int esconderse() {
+    final int NUMERO_ESCONDITES = 6;
+    final int MINIMO = 1;
+    return (int) ((Math.random() * NUMERO_ESCONDITES - MINIMO + 1) + MINIMO);
+  }
 
+  static int buscarNiño(int esconditeNiño, int guess) {
+    final double PROBABILIDAD_OCULTARSE = 0.1;
+    return guess == esconditeNiño && Math.random() >= PROBABILIDAD_OCULTARSE ? 1 : esconditeNiño;
+  }
+}
